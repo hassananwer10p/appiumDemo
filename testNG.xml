@@ -8,6 +8,6 @@
                     <include name="verifyUserCreation"/>
                 </methods>
             </class> 
-        </classes>
+        </classes> 
     </test>
 </suite>
