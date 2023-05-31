@@ -17,7 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         api-level: [29]
@@ -35,8 +35,8 @@ jobs:
             npm install -g appium@v1.20.2
             appium -v
             appium &>/dev/null &
-    - name: Run Appium Tests
-      uses: reactivecircus/android-emulator-runner@v1
+    - name: Android Emulator Runner Without SDK Setup
+      uses: RandyLutcavich/android-emulator-runner-without-sdk-setup@v1.0.3
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
