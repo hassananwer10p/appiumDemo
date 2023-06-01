@@ -45,7 +45,6 @@ jobs:
       - name: Run Appium tests
         run: mvn test
 
-
 # on:
 #   push:
 #     branches: [ "main" ]
