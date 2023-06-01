@@ -25,6 +25,15 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '1.8'
+          
+      # Adding to resolve error
+      - name: Set up Android SDK
+        uses: actions/setup-android@v2
+        with:
+          sdk-platform: 'android-29'
+          
+      - name: Set executable permissions for adb
+        run: chmod +x /path/to/adb
 
       - name: Set up Android emulator
         uses: reactivecircus/android-emulator-runner@v2
