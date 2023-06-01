@@ -28,7 +28,7 @@ jobs:
           
       # Adding to resolve error
       - name: Set up Android SDK
-        uses: actions/setup-android@v2
+        uses: android-actions/setup-android@v2
         with:
           sdk-platform: 'android-29'
           
