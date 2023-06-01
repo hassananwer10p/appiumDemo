@@ -34,8 +34,8 @@ jobs:
         with:
           sdk-platform: 'android-29'
           
-      - name: Set executable permissions for adb
-        run: chmod +x /path/to/adb
+#       - name: Set executable permissions for adb
+#         run: chmod +x /path/to/adb
 # till this
 
       - name: Set up Android emulator
