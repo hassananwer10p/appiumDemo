@@ -27,14 +27,16 @@ jobs:
           java-version: '1.8'
 
       - name: Set up Android emulator
-        uses: reactivecircus/android-emulator-runner@v1
+        uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           target: default
           architecture: x86
+          profile: Nexus 6
+          hw-options: hw.gpu.mode=auto
 
       - name: Start emulator
-        run: emulator -avd emulator-29 -no-audio -no-window &
+        run: emulator -avd Nexus6_API29 -no-audio -no-window &
 
       - name: Wait for emulator to start
         run: android-wait-for-emulator
