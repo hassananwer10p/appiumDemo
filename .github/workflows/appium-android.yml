@@ -27,7 +27,7 @@ jobs:
           java-version: '1.8'
 
       - name: Set up Android emulator
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v1
         with:
           api-level: 29
           target: default
