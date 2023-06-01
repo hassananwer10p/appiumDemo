@@ -52,10 +52,8 @@ jobs:
         run: $ANDROID_HOME/emulator/emulator -avd test -no-window -no-audio &
 
       - name: Wait for emulator to start
-        run: |
-          |
-          sleep 10
-          while ! adb devices | grep -w emulator-5554; do sleep 5; done
+        run: android-wait-for-emulator
+        
       - name: Run Maven commands
         run: |
           mvn clean install
