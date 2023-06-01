@@ -41,11 +41,19 @@ jobs:
       - name: Set up Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
-          target: default
-          architecture: x86
-          profile: Nexus 6
-          hw-options: hw.gpu.mode=auto
+          api-level: '29'
+          emulator-version: '30.1.5'
+          profile: 'Nexus 5'
+          script: |
+
+#       - name: Set up Android emulator
+#         uses: reactivecircus/android-emulator-runner@v2
+#         with:
+#           api-level: 29
+#           target: default
+#           architecture: x86
+#           profile: Nexus 6
+#           hw-options: hw.gpu.mode=auto
 
       - name: Start emulator
         run: emulator -avd Nexus6_API29 -no-audio -no-window &
