@@ -34,6 +34,7 @@ jobs:
           
       - name: Set executable permissions for adb
         run: chmod +x /path/to/adb
+# till this
 
       - name: Set up Android emulator
         uses: reactivecircus/android-emulator-runner@v2
