@@ -7,63 +7,80 @@
 # documentation.
 
 name: Appium Android
-
 on:
   push:
-    branches:
-      - main
-
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  test:
+    runs-on: macos-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v3
 
-      - name: Set up JDK
-        uses: actions/setup-java@v2
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          distribution: 'adopt'
-          java-version: '11'
-          jdk: '11'
+          api-level: 29
+          script: mvn clean test -Pandroid
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Set up JDK
+#         uses: actions/setup-java@v2
+#         with:
+#           distribution: 'adopt'
+#           java-version: '11'
+#           jdk: '11'
           
-      # Adding to resolve error
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v2
-        with:
-          sdk-platform: 'android-29'
+#       # Adding to resolve error
+#       - name: Set up Android SDK
+#         uses: android-actions/setup-android@v2
+#         with:
+#           sdk-platform: 'android-29'
           
 #       - name: Set executable permissions for adb
 #         run: chmod +x /path/to/adb
 # till this
 
-      - name: Set up Android emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: '29'
-          emulator-version: '30.1.5'
-          profile: 'Nexus 5'
+#       - name: Set up Android emulator
+#         uses: reactivecircus/android-emulator-runner@v2
+#         with:
+#           api-level: '29'
+#           emulator-version: '30.1.5'
+#           profile: 'Nexus 5'
         
-      - name: Start Android emulator
-        run: |
-          echo no | avdmanager create avd --force -n emulator-5554 -k "system-images;android-29;google_apis;x86"
-          $ANDROID_HOME/emulator/emulator -avd emulator-5554 -no-window -no-audio &
+#       - name: Start Android emulator
+#         run: |
+#           echo no | avdmanager create avd --force -n emulator-5554 -k "system-images;android-29;google_apis;x86"
+#           $ANDROID_HOME/emulator/emulator -avd emulator-5554 -no-window -no-audio &
 
     
 
-      - name: Wait for emulator to start
-        run: |
-          sleep 10
-          while ! adb devices | grep -w emulator-5554; do sleep 5; done
+#       - name: Wait for emulator to start
+#         run: |
+#           sleep 10
+#           while ! adb devices | grep -w emulator-5554; do sleep 5; done
         
-      - name: Run Maven commands
-        run: |
-          mvn clean install
+#       - name: Run Maven commands
+#         run: |
+#           mvn clean install
 
-      - name: Run tests
-        run: |
-          mvn test
+#       - name: Run tests
+#         run: |
+#           mvn test
 
 #       - name: Set up Android emulator
 #         uses: reactivecircus/android-emulator-runner@v2
